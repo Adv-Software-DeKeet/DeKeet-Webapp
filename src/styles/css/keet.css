@@ -1,0 +1,6 @@
+.jpeg-container {
+    background-image:url('../images/test.jpeg');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+  }
