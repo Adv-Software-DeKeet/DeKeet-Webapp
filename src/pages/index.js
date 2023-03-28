@@ -28,12 +28,11 @@ const Keet = ({children}) => {
         user.getIdTokenResult()
         .then((idTokenResult) => {
             console.log(idTokenResult)
-            if(!!idTokenResult.claims.default){
-                setToken("true")
-                
+            if(!!idTokenResult.claims.host){
+                setToken("host")
             }
-            else{
-                setToken("true")
+            else if(!!idTokenResult.claims.admin){
+                setToken("admin")
             }
         })
         .catch((error) => {

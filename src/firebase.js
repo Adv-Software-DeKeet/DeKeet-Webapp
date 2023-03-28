@@ -29,7 +29,7 @@ const signInWithGoogle = async () => {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
     //TODO: Check if already exists
-   axios.post("http://localhost:8094/user/", {
+   axios.post("http://localhost:8094/user", {
     uid: user.uid,
     name: user.displayName,
     authProvidor: 'google',
