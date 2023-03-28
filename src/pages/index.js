@@ -34,6 +34,9 @@ const Keet = ({children}) => {
             else if(!!idTokenResult.claims.admin){
                 setToken("admin")
             }
+            else if(!!idTokenResult.claims.default){
+                setToken("default")
+            }
         })
         .catch((error) => {
             console.log(error);
