@@ -4,6 +4,7 @@ import Overzicht from './pages/overzicht'
 import Games from './pages/games'
 import Login from './pages/login'
 import Register from './pages/login/register.js'
+import Admin from './pages/admin'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="spellen" element={<Games />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="admin" element={<Admin />} />
       </Routes>
     </div>
   );
