@@ -49,7 +49,7 @@ const Keet = ({children}) => {
            <div>
             {children}
            </div>
-           <div className="dashboard__container">
+           <div style={{ color: 'white'}} className="dashboard__container">
                 Logged in as
                 <div>{name}</div>
                 <div>{user?.email}</div>
@@ -63,6 +63,7 @@ const Keet = ({children}) => {
                 get Role
                 </button>
                 {token}
+
                 {role}
             </div>
 
