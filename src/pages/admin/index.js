@@ -18,7 +18,7 @@ const Admin = () => {
         user.getIdTokenResult()
         .then((idTokenResult) => {
             console.log(idTokenResult)
-            if(!!idTokenResult.claims.admin){
+            if(!!idTokenResult.claims.default){
                 fetchUsers()
             }
             else{
@@ -31,20 +31,16 @@ const Admin = () => {
       }, [user, loading]);
 
       const fetchUsers = () => { 
-        axios.get("http://localhost:8094/user")
+        axios.get("http://localhost:9080/api/user")
        .then(function (response) {
-           setUsers(response)
+           setUsers(response.data)
+           console.log(response.data)
        })
       }
 
   return (
     <div>
-        {users ?? ( 
-        users.map(userr => (
-            <div>{userr.email}</div>
-        ))
-        )}
-
+        <div>{users.map(userr => (<div>{userr.email}</div>))}</div>
     </div>
   )
 }
