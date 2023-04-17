@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Loader from '../../components/Loader';
 import axios from "axios";
+import User from './User';
 
 const Admin = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -22,7 +22,7 @@ const Admin = () => {
         user.getIdTokenResult()
         .then((idTokenResult) => {
             console.log(idTokenResult)
-            if(!!idTokenResult.claims.default){
+            if(!!idTokenResult.claims.admin){
                 fetchUsers()
             }
             else{
@@ -43,7 +43,7 @@ const Admin = () => {
       }
 
       const updateUser = () => {
-        axios.put("http://localhost:9080/api/user", {
+        axios.put("http://localhost:9080/api/user/"+uid, {
             uid: uid,
             email: email,
             role: role,
@@ -53,30 +53,7 @@ const Admin = () => {
   return (
     <div>
         {users.map(user => (
-            <div key={user.uid}>
-                {user.email}
-                 <div>
-                    change password:
-                    <input           
-                        type="text"
-                        className="login__textBox"
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                    />
-                 </div>
-                 <div>
-                    change role:
-                    <input           
-                        type="text"
-                        className="login__textBox"
-                        value={user.role}
-                        onChange={(e) => setRole(e.target.value)}
-                        placeholder="Role"
-                    />
-                </div>
-                <div onClick={() => updateUser()}>Save changes</div>
-                <div>Delete</div>
-            </div> 
+            <User user={user}/>
             ))}
     </div>
   )
