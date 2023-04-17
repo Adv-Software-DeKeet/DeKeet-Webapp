@@ -46,7 +46,7 @@ const Admin = () => {
         axios.put("http://localhost:9080/api/user", {
             uid: uid,
             email: email,
-            role: role            
+            role: role,
         })
       }
 
@@ -74,7 +74,8 @@ const Admin = () => {
                         placeholder="Role"
                     />
                 </div>
-                 <div>Delete</div>
+                <div onClick={() => updateUser()}>Save changes</div>
+                <div>Delete</div>
             </div> 
             ))}
     </div>
