@@ -1,19 +1,24 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from "axios";
+import { baseurl } from '../../static/endpoints';
 
 const User = ({user}) => {
-    const [email, setEmail] = useState("jovisimons009@gmail.com");
-    const [uid, setUid] = useState("TgA51nLhDdcMZ6RuHXHvuI2D5PG3");
+    const [email, setEmail] = useState(user.email);
+    const [uid, setUid] = useState(user.uid);
     const [password, setPassword] = useState("");
     const [role, setRole] = useState(user.role);
 
     const updateUser = () => {
-        axios.put("http://localhost:9080/api/user/"+uid, {
+        axios.put(baseurl+"/api/user/"+uid, {
             uid: uid,
             email: email,
             role: role,
         })
+    }
+
+    const deleteUser = () => {
+        axios.delete(baseurl+"/api/user/"+uid)
     }
 
   return (
@@ -39,7 +44,7 @@ const User = ({user}) => {
                     />
                 </div>
                 <div onClick={() => updateUser()}>Save changes</div>
-                <div>Delete</div>
+                <div onClick={() => deleteUser()}>Delete</div>
             </div> 
   )
 }
